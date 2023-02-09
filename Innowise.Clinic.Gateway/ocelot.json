@@ -12,7 +12,8 @@
       "UpstreamPathTemplate": "/apigateway/authentication/sign-up/patient",
       "UpstreamHttpMethod": [
         "Post"
-      ]
+      ],
+      "SwaggerKey": "authentication"
     },
     {
       "DownstreamPathTemplate": "/authentication/sign-in/patient",
@@ -26,7 +27,8 @@
       "UpstreamPathTemplate": "/apigateway/authentication/sign-in/patient",
       "UpstreamHttpMethod": [
         "POST"
-      ]
+      ],
+      "SwaggerKey": "authentication"
     },
     {
       "DownstreamPathTemplate": "/authentication/sign-out",
@@ -40,7 +42,8 @@
       "UpstreamPathTemplate": "/apigateway/authentication/sign-out",
       "UpstreamHttpMethod": [
         "POST"
-      ]
+      ],
+      "SwaggerKey": "authentication"
     },
     {
       "DownstreamPathTemplate": "/authentication/token/refresh",
@@ -54,10 +57,11 @@
       "UpstreamPathTemplate": "/apigateway/authentication/token/refresh",
       "UpstreamHttpMethod": [
         "POST"
-      ]
+      ],
+      "SwaggerKey": "authentication"
     },
     {
-      "DownstreamPathTemplate": "/authentication/validation/{entityToValidate}",
+      "DownstreamPathTemplate": "/validation/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -65,10 +69,11 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/apigateway/authentication/validation/{entityToValidate}",
+      "UpstreamPathTemplate": "/apigateway/authentication/validation/{everything}",
       "UpstreamHttpMethod": [
         "Get"
-      ]
+      ],
+      "SwaggerKey": "authentication"
     },
     {
       "DownstreamPathTemplate": "/offices",
@@ -83,10 +88,11 @@
       "UpstreamHttpMethod": [
         "GET",
         "POST"
-      ]
+      ],
+      "SwaggerKey": "offices"
     },
     {
-      "DownstreamPathTemplate": "/offices/{officeid}",
+      "DownstreamPathTemplate": "/offices/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -94,15 +100,40 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/apigateway/offices/{officeid}",
+      "UpstreamPathTemplate": "/apigateway/offices/{everything}",
       "UpstreamHttpMethod": [
         "GET",
         "PUT",
         "DELETE"
-      ]
+      ],
+      "SwaggerKey": "offices"
     }
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:25590"
-  }
+  },
+  "SwaggerEndPoints": [
+    {
+      "Key": "authentication",
+      "TakeServersFromDownstreamService": true,
+      "Config": [
+        {
+          "Name": "Authentication API",
+          "Version": "v1",
+          "Url": "http://auth:80/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "offices",
+      "TakeServersFromDownstreamService": true,
+      "Config": [
+        {
+          "Name": "Offices API",
+          "Version": "v1",
+          "Url": "http://office:80/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
 }
