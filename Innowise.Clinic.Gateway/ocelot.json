@@ -16,7 +16,7 @@
       "SwaggerKey": "authentication"
     },
     {
-      "DownstreamPathTemplate": "/authentication/sign-in/patient",
+      "DownstreamPathTemplate": "/authentication/sign-in",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -24,7 +24,7 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/apigateway/authentication/sign-in/patient",
+      "UpstreamPathTemplate": "/apigateway/authentication/sign-in",
       "UpstreamHttpMethod": [
         "POST"
       ],
@@ -42,6 +42,21 @@
       "UpstreamPathTemplate": "/apigateway/authentication/sign-out",
       "UpstreamHttpMethod": [
         "POST"
+      ],
+      "SwaggerKey": "authentication"
+    },
+    {
+      "DownstreamPathTemplate": "/authentication/email/confirm/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "auth",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/apigateway/authentication/email/confirm/{everything}",
+      "UpstreamHttpMethod": [
+        "GET"
       ],
       "SwaggerKey": "authentication"
     },
@@ -107,6 +122,24 @@
         "DELETE"
       ],
       "SwaggerKey": "offices"
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "profile",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/apigateway/profile/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "PUT",
+        "POST",
+        "DELETE"
+      ],
+      "SwaggerKey": "profiles"
     }
   ],
   "GlobalConfiguration": {
@@ -132,6 +165,17 @@
           "Name": "Offices API",
           "Version": "v1",
           "Url": "http://office:80/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "profiles",
+      "TakeServersFromDownstreamService": true,
+      "Config": [
+        {
+          "Name": "Profiles API",
+          "Version": "v1",
+          "Url": "http://profile:80/swagger/v1/swagger.json"
         }
       ]
     }
