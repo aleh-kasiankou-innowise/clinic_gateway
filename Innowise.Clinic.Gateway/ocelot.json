@@ -140,6 +140,24 @@
         "DELETE"
       ],
       "SwaggerKey": "profiles"
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "profile",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/apigateway/service-api/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "PUT",
+        "POST",
+        "DELETE"
+      ],
+      "SwaggerKey": "services"
     }
   ],
   "GlobalConfiguration": {
@@ -176,6 +194,17 @@
           "Name": "Profiles API",
           "Version": "v1",
           "Url": "http://profile:80/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "services",
+      "TakeServersFromDownstreamService": true,
+      "Config": [
+        {
+          "Name": "Services API",
+          "Version": "v1",
+          "Url": "http://service:80/swagger/v1/swagger.json"
         }
       ]
     }
