@@ -95,7 +95,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "offices",
+          "Host": "office",
           "Port": 80
         }
       ],
@@ -111,7 +111,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "offices",
+          "Host": "office",
           "Port": 80
         }
       ],
@@ -146,7 +146,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "profile",
+          "Host": "service",
           "Port": 80
         }
       ],
@@ -158,6 +158,24 @@
         "DELETE"
       ],
       "SwaggerKey": "services"
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointment",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/apigateway/appointments-api/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "PUT",
+        "POST",
+        "DELETE"
+      ],
+      "SwaggerKey": "appointments"
     }
   ],
   "GlobalConfiguration": {
@@ -205,6 +223,17 @@
           "Name": "Services API",
           "Version": "v1",
           "Url": "http://service:80/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "appointments",
+      "TakeServersFromDownstreamService": true,
+      "Config": [
+        {
+          "Name": "Appointments API",
+          "Version": "v1",
+          "Url": "http://appointment:80/swagger/v1/swagger.json"
         }
       ]
     }
