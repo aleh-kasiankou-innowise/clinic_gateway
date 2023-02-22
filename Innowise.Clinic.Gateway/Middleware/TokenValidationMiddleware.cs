@@ -81,7 +81,7 @@ public class TokenValidationMiddleware
     {
         var httpClient = new HttpClient();
 
-        var response = await httpClient.GetAsync($"http://auth/validation/user-tokens/{userId}");
+        var response = await httpClient.PostAsJsonAsync("http://auth:80/helperservices/user-tokens", userId);
         if (response.IsSuccessStatusCode)
         {
             var isValidationSucceeded = await response.Content.ReadFromJsonAsync<bool>();
