@@ -8,11 +8,11 @@ using Ocelot.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(x => x.AddDefaultPolicy(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddOcelot();
 builder.Configuration.AddJsonFile("ocelot.json");
-
 builder.Services.AddSwaggerForOcelot(builder.Configuration);
 builder.Services.AddAuthentication(options =>
 {
@@ -42,6 +42,7 @@ builder.Services.AddSingleton<TokenValidationMiddleware>();
 
 var app = builder.Build();
 
+app.UseCors();
 app.UseMiddleware<TokenValidationMiddleware>();
 app.UseSwaggerForOcelotUI(opt => { opt.PathToSwaggerGenerator = "/swagger/docs"; });
 app.UseOcelot().Wait();

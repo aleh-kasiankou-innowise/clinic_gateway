@@ -176,6 +176,42 @@
         "DELETE"
       ],
       "SwaggerKey": "appointments"
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "schedule",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/apigateway/scheduling-api/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "PUT",
+        "POST",
+        "DELETE"
+      ],
+      "SwaggerKey": "scheduling"
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "documents",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/apigateway/documents-api/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "PUT",
+        "POST",
+        "DELETE"
+      ],
+      "SwaggerKey": "documents"
     }
   ],
   "GlobalConfiguration": {
@@ -234,6 +270,28 @@
           "Name": "Appointments API",
           "Version": "v1",
           "Url": "http://appointment:80/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "scheduling",
+      "TakeServersFromDownstreamService": true,
+      "Config": [
+        {
+          "Name": "Scheduling API",
+          "Version": "v1",
+          "Url": "http://schedule:80/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "documents",
+      "TakeServersFromDownstreamService": true,
+      "Config": [
+        {
+          "Name": "Documents API",
+          "Version": "v1",
+          "Url": "http://documents:80/swagger/v1/swagger.json"
         }
       ]
     }
